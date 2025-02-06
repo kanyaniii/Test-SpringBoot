@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/apitest")
-@Tag(name = "SSO Test API", description = "API for generating SSO tokens")
+@RequestMapping("/service")
+@Tag(name = "app-controller", description = "App Controller")
 public class ssoController {
     private final ssoService service;
 
@@ -19,7 +19,7 @@ public class ssoController {
     }
 
     @PostMapping("/gentoken")
-    @Operation(summary = "Generate a token and store user test data")
+    @Operation(summary = "Generate ")
     public ssoEntity generateToken(@RequestBody ssoEntity request) {
         request.setRequestDate(java.time.LocalDateTime.now());
         return service.save(request);

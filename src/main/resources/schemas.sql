@@ -1,4 +1,4 @@
-create table sso_user_test
+create table IF NOT EXISTS sso_user_test
 (
     request_date          timestamp not null
         constraint pk_sso_user_test

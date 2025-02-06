@@ -5,6 +5,7 @@ import dev.danvega.test_springboot.Repository.ssoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,10 +18,24 @@ public class ssoService {
     }
 
     public ssoEntity save(ssoEntity userTest) {
-        return repository.save(userTest);
+        if (userTest == null) {
+            throw new IllegalArgumentException("userTest is null");
+        }
+        try {
+            return repository.save(userTest);
+        } catch (Exception e) {
+            System.err.println("Error saving userTest: " + e.getMessage());
+            throw new RuntimeException("Failed to save userTest ");
+        }
     }
 
     public Optional<ssoEntity> getUserTest(LocalDateTime requestDate) {
         return repository.findById(requestDate);
     }
+
+    public List<ssoEntity> findAllUserTests() {
+        return  repository.findAll();
+    }
+
+
 }
